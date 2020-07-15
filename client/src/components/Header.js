@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import ReorderRoundedIcon from '@material-ui/icons/ReorderRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Brightness1 as LightModeIcon, Brightness3 as DarkModeIcon } from '@material-ui/icons/';
 
@@ -29,23 +28,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default (props) => {
   const { pathName } = props;
-  const [isDarkMode, setDarkMode] = React.useState(false);
 
   const classes = useStyles();
-
-  props.onToggleDarkMode(isDarkMode);
 
   return (
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <ReorderRoundedIcon className={classes.logoIcon} />
           <Typography component="h1" variant="h6" className={classes.grow}>
-            Randorder
+            RandOrder
           </Typography>
-          <Tooltip title={isDarkMode ? 'Enable light mode' : 'Enable dark mode'}>
-            <IconButton onClick={() => setDarkMode((prev) => !prev)}>
-              {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
+          <Tooltip title={props.darkMode ? 'Enable light mode' : 'Enable dark mode'}>
+            <IconButton onClick={() => props.onToggleDarkMode()}>
+              {props.darkMode ? <LightModeIcon /> : <DarkModeIcon />}
             </IconButton>
           </Tooltip>
           {pathName !== '/' && (

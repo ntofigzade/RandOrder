@@ -53,7 +53,7 @@ export default function CreateSession(props) {
             autoComplete=""
             autoFocus
           />
-          {sessionId ? <Button
+          {(sessionId.replace(/\s/g, '')) ? <Button
             type="submit"
             component={RouterLink}
             to={`/session/${sessionId}`}

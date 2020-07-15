@@ -18,9 +18,10 @@ function App() {
       <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
         <CssBaseline />
         <Header
-          onToggleDarkMode={(DarkMode) => {
-            setDarkMode(DarkMode);
+          onToggleDarkMode={() => {
+            setDarkMode((prev) => !prev);
           }}
+          darkMode={isDarkMode}
           pathName={location.pathname}
         />
         <Switch>
