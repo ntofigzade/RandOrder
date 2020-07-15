@@ -20,9 +20,6 @@ mongoose.connect(
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   app.use(express.static('client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
-  });
 }
 
 const port = process.env.PORT || 5000;
@@ -92,4 +89,8 @@ app.post('/api/edit', (req, res) => {
       console.log(err);
     }
   });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
