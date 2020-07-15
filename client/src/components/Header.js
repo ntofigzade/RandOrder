@@ -10,9 +10,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Brightness1 as LightModeIcon, Brightness3 as DarkModeIcon } from '@material-ui/icons/';
 
 const useStyles = makeStyles((theme) => ({
-  grow: {
+  logoText: {
     flexGrow: 1,
     color: theme.palette.text.primary,
+    textDecoration: 'none'
   },
   logoIcon: {
     marginRight: theme.spacing(1),
@@ -35,7 +36,7 @@ export default (props) => {
     <div>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography component="h1" variant="h6" className={classes.grow}>
+          <Typography component={RouterLink} to={'/'} variant="h6" className={classes.logoText}>
             RandOrder
           </Typography>
           <Tooltip title={props.darkMode ? 'Enable light mode' : 'Enable dark mode'}>
