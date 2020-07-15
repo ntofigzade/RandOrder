@@ -40,7 +40,7 @@ app.get('/api', (req, res) => {
         userTeams: [],
       });
       user.save();
-      res.redirect(`/?userId=${userIdObject.userId}`);
+      res.redirect(`/api/?userId=${userIdObject.userId}`);
     } else {
       res.json(foundUser[0].userTeams);
     }
