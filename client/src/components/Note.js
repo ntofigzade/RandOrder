@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
