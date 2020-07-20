@@ -1,37 +1,8 @@
 const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const router = express.Router();
+const User = require('../models/User')
 
-const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-
-mongoose.connect(
-  'mongodb+srv://admin-natig:PGCmlkfQ0K3VxQqB@randordercluster.vidff.mongodb.net/randorder',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-);
-
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server has started on port ${port}`));
-
-const teamSchema = mongoose.Schema({ teamName: String, teamMembers: String, details: String });
-
-const userSchema = mongoose.Schema({
-  userId: String,
-  userTeams: [teamSchema],
-});
-
-const User = mongoose.model('User', userSchema);
-
-app.get('/api', (req, res) => {
+router.get('/', (req, res) => {
   const userIdObject = req.query;
   User.find(userIdObject, (err, foundUser) => {
     if (foundUser.length === 0) {
@@ -40,14 +11,14 @@ app.get('/api', (req, res) => {
         userTeams: [],
       });
       user.save();
-      res.redirect(`/api/?userId=${userIdObject.userId}`);
+      res.redirect(`/?userId=${userIdObject.userId}`);
     } else {
       res.json(foundUser[0].userTeams);
     }
   });
 });
 
-app.post('/api/add', (req, res) => {
+router.post('/add', (req, res) => {
   const { userId, addedTeam } = req.body;
 
   User.find({ userId }, (err, foundUser) => {
@@ -58,7 +29,7 @@ app.post('/api/add', (req, res) => {
   });
 });
 
-app.post('/api/delete', (req, res) => {
+router.post('/delete', (req, res) => {
   const { userId, teamId } = req.body;
 
   User.findOne({ userId }, (err, foundUser) => {
@@ -71,7 +42,7 @@ app.post('/api/delete', (req, res) => {
   });
 });
 
-app.post('/api/edit', (req, res) => {
+router.post('/edit', (req, res) => {
   const { userId, teamId, editedTeam } = req.body;
 
   User.findOne({ userId }, (err, foundUser) => {
@@ -87,9 +58,4 @@ app.post('/api/edit', (req, res) => {
   });
 });
 
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-  app.use(express.static('client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'));
-  });
-}
+module.exports = router;

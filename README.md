@@ -28,19 +28,19 @@ RandOrder is a single-page application (SPA) written in [ReactJS](https://reactj
   
 ### Backend
 
-* [Node.js](https://nodejs.org/) - (see [`Server source`](./index.js))
+* [Node.js](https://nodejs.org/) - (see [`Server source`](./server.js))
 
   - A JavaScript runtime envrionment that executes JavaScript code on a server instead of a browser. 
 
-* [Express.js](https://expressjs.com/) - (see [`Server source`](./index.js))
+* [Express.js](https://expressjs.com/) - (see [`Server source`](./server.js))
 
   - A [Node.js](https://nodejs.org/) web application framework
 
-* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - (see [`Server source`](./index.js))
+* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) - (see [`Server source`](./server.js))
 
   - A cloud database service for hosting and managing data in the cloud
 
-* [Mongoose](https://mongoosejs.com/) - (see [`Server source`](./index.js))
+* [Mongoose](https://mongoosejs.com/) - (see [`Server source`](./server.js))
 
   - An Object Data Modeling (ODM) library for MongoDB
   
