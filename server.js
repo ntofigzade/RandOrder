@@ -21,6 +21,9 @@ mongoose.connect(
 const user = require('./routes/user');
 app.use('/api', user);
 
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server has started on port ${port}`));
+
 const path = require('path');
 
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
@@ -29,7 +32,3 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
   });
 }
-
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server has started on port ${port}`));
